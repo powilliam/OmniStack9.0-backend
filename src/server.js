@@ -1,4 +1,5 @@
 const express = require('express');
+const Routes = require('./routes');
 
 const app = express();
 
@@ -39,9 +40,6 @@ const app = express();
 */
 
 app.use(express.json());
-
-app.post('/users', (req, res) => {
-    res.json(req.body);
-});
+app.use(Routes);
 
 app.listen(3333);
