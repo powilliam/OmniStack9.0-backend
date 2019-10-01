@@ -33,10 +33,15 @@ const app = express();
             // req.body.name -> "William"
             // req.body.idade -> 19
         });
+    
+    OBS.:   O express não reconhece por padrão o formato json de requisições
+        por isso, a variável app precisa usar o express.json();
 */
 
-app.get('/', (req, res) => {
-    res.json({ message: "Hello World" });
+app.use(express.json());
+
+app.post('/users', (req, res) => {
+    res.json(req.body);
 });
 
 app.listen(3333);
