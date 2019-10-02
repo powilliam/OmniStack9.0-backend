@@ -3,6 +3,7 @@ const multer = require('multer');
 const multerConfig = require('./config/upload');
 
 const SpotsController = require('./controllers/SpotsController');
+const BookingController = require('./controllers/BookingController');
 const SessionController = require('./controllers/SessionController');
 const DashboardController = require('./controllers/DashboardController');
 
@@ -46,11 +47,10 @@ const upload = multer(multerConfig);
 */
 
 routes.post('/sessions', SessionController.store);
-
-routes.get('/spots', SpotsController.index);
-
+routes.post('/spots/:spot_id/bookings', BookingController.store);
 routes.post('/spots', upload.single('thumbnail'), SpotsController.store);
 
+routes.get('/spots', SpotsController.index);
 routes.get('/dashboards', DashboardController.show);
 
 module.exports = routes;
