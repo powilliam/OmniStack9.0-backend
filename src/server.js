@@ -1,7 +1,11 @@
 const express = require('express');
 const Routes = require('./routes');
 
+const dataBase = require('../mongoose');
+
 const app = express();
+
+dataBase.connectToMongoServer();
 
 //req.query -> para resgatar queries enviados pela url: ?name=William. (Para filtrar infos)
 /* 
