@@ -12,15 +12,16 @@ module.exports = {
 
     store: async (req, res) => {
         const { company, price, techs } = req.body;
-        const { originalname } = req.file;
+        const { filename } = req.file;
         const { user_id } = req.headers;
+        console.log(req.file);
 
         const findUser = await UserSchema.findById(user_id);
 
         !findUser && res.status(401).json({ error: "User does not exist" });
 
         const store = await SpotsSchema.create({
-            thumbnail: originalname,
+            thumbnail: filename,
             company,
             price,
             techs: techs.split(',').map(techs => techs.trim()),
