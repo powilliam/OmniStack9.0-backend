@@ -2,6 +2,14 @@ const UserSchema = require('../models/UserSchema');
 const SpotsSchema = require('../models/SpotsSchema');
 
 module.exports = {
+    index: async (req, res) => {
+        const { tech } = req.query;
+
+        const spots = await SpotsSchema.find({ techs: tech });
+
+        return res.json(spots);
+    },
+
     store: async (req, res) => {
         const { company, price, techs } = req.body;
         const { originalname } = req.file;
