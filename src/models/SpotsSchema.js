@@ -12,3 +12,5 @@ const SpotsSchema = new mongoose.Schema({
 });
 
 const model = mongoose.model('Spots', SpotsSchema);
+
+module.exports = model;
