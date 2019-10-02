@@ -1,7 +1,12 @@
 const express = require('express');
+const multer = require('multer');
+const multerConfig = require('./config/upload');
+
+const SpotsController = require('./controllers/SpotsController');
 const SessionController = require('./controllers/SessionController');
 
 const routes = express.Router();
+const upload = multer(multerConfig);
 
 //req.query -> para resgatar queries enviados pela url: ?name=William. (Para filtrar infos)
 /* 
@@ -40,5 +45,7 @@ const routes = express.Router();
 */
 
 routes.post('/sessions', SessionController.store);
+
+routes.post('/spots', upload.single('thumbnail'), SpotsController.store);
 
 module.exports = routes;
